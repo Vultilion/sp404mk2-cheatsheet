@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP-404MK2 Workflow Cheat Sheet v5.50</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎛️</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .lang-en .de {
+            display: none !important;
+        }
+
+        .lang-de .en {
+            display: none !important;
+        }
+
+        .key-shift {
+            border-color: #FF0055;
+            color: #FF0055;
+        }
+
+        .key-remain {
+            border-color: #CCFF00;
+            color: #CCFF00;
+        }
+
+        .key-value {
+            border-color: #00D2FF;
+            color: #00D2FF;
+        }
+
+        .key-del {
+            border-color: #FF7A00;
+            color: #FF7A00;
+        }
+
+        .key-copy {
+            border-color: #7000FF;
+            color: #b485ff;
+        }
+
+        .key-pad {
+            border-color: #475569;
+            color: #e2e8f0;
+            background: #1e293b;
+        }
+
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.15rem 0.5rem;
+            border-radius: 0.375rem;
+            border-width: 1px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background-color: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .shortcut-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.875rem 0;
+            border-bottom: 1px solid #1e293b;
+            gap: 1rem;
+        }
+
+        .shortcut-row:last-child {
+            border-bottom: none;
+        }
+
+        .shortcut-desc {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: 0.35rem;
+        }
+
+        .tag-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.25rem;
+            border: 1px solid #334155;
+            letter-spacing: 0.02em;
+        }
+
+        .card {
+            background-color: #111827;
+            border: 1px solid #334155;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s;
+            height: 100%;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #334155;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #00D2FF, #FF0055);
+        }
+    </style>
+</head>
+
+<body class="antialiased pb-20 lang-de">
+
+    <header class="pt-16 pb-12 px-6 text-center border-b border-slate-800 bg-[#0f172a] sticky top-0 z-50 shadow-xl">
+        <div class="absolute top-4 right-4 md:top-6 md:right-8">
+            <button id="langToggle"
+                class="bg-slate-800 border border-slate-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md hover:border-[#00D2FF] hover:text-[#00D2FF] transition-colors flex items-center gap-2">
+                <span class="de">🇬🇧 Switch to EN</span><span class="en">🇩🇪 Auf DE wechseln</span>
+            </button>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-3 tracking-tight"><span class="text-gradient">SP-404MK2</span>
+            WORKFLOW</h1>
+        <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <span class="text-xs text-slate-400 flex items-center gap-2"><kbd class="kbd key-shift">SHIFT</kbd>
+                Global</span>
+            <span class="text-xs text-slate-400 flex items-center gap-2"><kbd class="kbd key-value">VALUE</kbd> <span
+                    class="de">Temporär/Auswahl</span><span class="en">Temporary/Select</span></span>
+            <span class="text-xs text-slate-400 flex items-center gap-2"><kbd class="kbd key-remain">REMAIN</kbd>
+                Routing/Bank</span>
+            <span class="text-xs text-slate-400 flex items-center gap-2"><kbd class="kbd key-del">DEL</kbd> / <kbd
+                    class="kbd key-copy">COPY</kbd> <span class="de">Verwalten</span><span
+                    class="en">Manage</span></span>
+        </div>
+        <div class="max-w-xl mx-auto mt-8 relative">
+            <input type="text" id="searchInput" aria-label="Suchen / Search"
+                placeholder="Suche nach Tags, Funktionen (z.B. '#chop', '#glitch', 'Roll')..."
+                class="w-full bg-slate-800 border border-slate-600 text-white pl-10 pr-4 py-3 rounded-lg shadow-inner focus:outline-none focus:border-[#00D2FF] focus:ring-1 focus:ring-[#00D2FF] transition-colors placeholder-slate-500">
+            <span class="absolute left-3.5 top-3.5 text-slate-500 text-lg leading-none" aria-hidden="true">🔍</span>
+        </div>
+    </header>
+
+    <main class="max-w-[1400px] mx-auto px-6 mt-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 items-start">
+
+            <!-- 1. Playback & Performance -->
+            <div class="card">
+                <div class="card-header bg-slate-800 text-white">1. Playback & Performance</div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Alle Samples stoppen (Panik)</span><span class="en">Stop all samples
+                                (Panic)</span>
+                            <div class="tag-container"><span class="tag-pill">#panic</span><span
+                                    class="tag-pill">#stop</span><span class="tag-pill">#live</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">EXIT</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Sample pausieren</span><span class="en">Pause sample</span>
+                            <div class="tag-container"><span class="tag-pill">#pause</span><span
+                                    class="tag-pill">#hold</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">HOLD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Sample wählen (ohne Ton)</span><span class="en">Select sample (no
+                                sound)</span>
+                            <div class="tag-container"><span class="tag-pill">#select</span><span
+                                    class="tag-pill">#silent</span><span class="tag-pill">#cue</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-value">VAL hold</kbd> + <kbd
+                                class="kbd key-pad">PAD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">Chromatisch (Tonleitern/Melodie)</span><span class="en">Chromatic
+                                (Scales/Melody)</span>
+                            <div class="tag-container"><span class="tag-pill">#chromatic</span><span
+                                    class="tag-pill">#melody</span><span class="tag-pill">#pitch</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 4</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span>16-Level Velocity</span>
+                            <div class="tag-container"><span class="tag-pill">#velocity</span><span
+                                    class="tag-pill">#volume</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 2</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Fixed Velocity (Maximal)</span><span class="en">Fixed Velocity
+                                (Maximum)</span>
+                            <div class="tag-container"><span class="tag-pill">#velocity</span><span
+                                    class="tag-pill">#fixed</span><span class="tag-pill">#max</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 1</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">Roll / Stutter (Glitch)</span><span class="en">Roll / Stutter
+                                (Glitch)</span>
+                            <div class="tag-container"><span class="tag-pill">#roll</span><span
+                                    class="tag-pill">#stutter</span><span class="tag-pill">#glitch</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">ROLL</kbd> + <kbd
+                                class="kbd key-pad">PAD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">Roll Settings (Geschwindigkeit)</span><span class="en">Roll Settings
+                                (Speed)</span>
+                            <div class="tag-container"><span class="tag-pill">#roll</span><span
+                                    class="tag-pill">#speed</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">ROLL</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">One-Shot Modus umschalten</span><span class="en">Toggle One-Shot
+                                mode</span>
+                            <div class="tag-container"><span class="tag-pill">#oneshot</span><span
+                                    class="tag-pill">#gate</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-value">VAL hold</kbd> + <kbd
+                                class="kbd key-pad">GATE</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Gate für Bank An/Aus</span><span class="en">Toggle Gate for bank</span>
+                            <div class="tag-container"><span class="tag-pill">#gate</span><span
+                                    class="tag-pill">#bank</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">GATE</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Sync für Bank An/Aus</span><span class="en">Toggle Sync for bank</span>
+                            <div class="tag-container"><span class="tag-pill">#sync</span><span
+                                    class="tag-pill">#bpm</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">BPM SYNC</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span>Pad Mute</span>
+                            <div class="tag-container"><span class="tag-pill">#mute</span><span
+                                    class="tag-pill">#silence</span><span class="tag-pill">#live</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">REV</kbd> + <kbd class="kbd key-pad">PAD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Pad Mute Lock (Einrasten)</span><span class="en">Pad Mute Lock
+                                (Latch)</span>
+                            <div class="tag-container"><span class="tag-pill">#mute</span><span
+                                    class="tag-pill">#lock</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">REV</kbd> + <kbd class="kbd key-remain">REM</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Live Mode (Edits sperren)</span><span class="en">Live Mode (Lock
+                                edits)</span>
+                            <div class="tag-container"><span class="tag-pill">#live</span><span
+                                    class="tag-pill">#lock</span><span class="tag-pill">#safe</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-remain">REMAIN 3s</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Zuletzt gespieltes Pad wdh.</span><span class="en">Retrigger last
+                                pad</span>
+                            <div class="tag-container"><span class="tag-pill">#retrigger</span><span
+                                    class="tag-pill">#subpad</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">SUB PAD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Timing synchronisieren (Performance)</span><span class="en">Sync timing (Performance)</span>
+                            <div class="tag-container"><span class="tag-pill">#timing</span><span
+                                    class="tag-pill">#sync</span><span class="tag-pill">#live</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-value">VAL hold</kbd> + <kbd class="kbd key-pad">SUB PAD</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Sampling & Sound Gen -->
+            <div class="card">
+                <div class="card-header bg-[#CCFF00] text-slate-900">2. Sampling & Sound Gen</div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc text-white flex-1">
+                            <span class="de">Sound Generator (Synth)</span><span class="en">Sound Generator
+                                (Synth)</span>
+                            <div class="tag-container"><span class="tag-pill">#synth</span><span
+                                    class="tag-pill">#oscillator</span><span class="tag-pill">#soundgen</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">REC SET</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc text-white">
+                            <span class="de">Sampling starten</span><span class="en">Start sampling</span>
+                            <div class="tag-container"><span class="tag-pill">#record</span><span
+                                    class="tag-pill">#sample</span><span class="tag-pill">#input</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">REC</kbd> + <kbd
+                                class="kbd key-pad">PAD</kbd> + <kbd class="kbd key-pad">REC</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc text-white">
+                            <span class="de">Resampling starten</span><span class="en">Start resampling</span>
+                            <div class="tag-container"><span class="tag-pill">#resample</span><span
+                                    class="tag-pill">#bounce</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">RESAMP</kbd> + <kbd
+                                class="kbd key-pad">PAD</kbd> + <kbd class="kbd key-pad">REC</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc text-white">
+                            <span>Sample Merge Mode</span>
+                            <div class="tag-container"><span class="tag-pill">#merge</span><span
+                                    class="tag-pill">#combine</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">RESAMPLE</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc text-white flex-1">
+                            <span class="de">Skip-Back / Looper</span><span class="en">Skip-Back / Looper</span>
+                            <div class="tag-container"><span class="tag-pill">#skipback</span><span
+                                    class="tag-pill">#looper</span><span class="tag-pill">#recover</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">MARK</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc text-white flex-1">
+                            <span class="de">MARK Taste umbelegen</span><span class="en">Reassign MARK button</span>
+                            <div class="tag-container"><span class="tag-pill">#setup</span><span
+                                    class="tag-pill">#mark</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-value">VALUE click</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc text-white">
+                            <span class="de">Input Settings (Audio)</span><span class="en">Input Settings (Audio)</span>
+                            <div class="tag-container"><span class="tag-pill">#input</span><span
+                                    class="tag-pill">#audio</span><span class="tag-pill">#routing</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">EXT SRC</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc text-white flex-1">
+                            <span class="de">Kopfhörer (CUE) Balance</span><span class="en">Headphone (CUE)
+                                Balance</span>
+                            <div class="tag-container"><span class="tag-pill">#cue</span><span
+                                    class="tag-pill">#headphone</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 3</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Sample Bearbeitung -->
+            <div class="card">
+                <div class="card-header bg-slate-800 text-white"><span class="de">3. Sample Bearbeitung</span><span
+                        class="en">3. Sample Editing</span></div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Chop Modus (Schneiden)</span><span class="en">Chop Mode (Slicing)</span>
+                            <div class="tag-container"><span class="tag-pill">#chop</span><span
+                                    class="tag-pill">#slice</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">START/END</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Loop-Ende vorhören (Start/End)</span><span class="en">Preview Loop End
+                                (Start/End)</span>
+                            <div class="tag-container"><span class="tag-pill">#chop</span><span
+                                    class="tag-pill">#preview</span><span class="tag-pill">#loop</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">ROLL</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Envelope (Hüllkurve)</span><span class="en">Envelope</span>
+                            <div class="tag-container"><span class="tag-pill">#envelope</span><span
+                                    class="tag-pill">#attack</span><span class="tag-pill">#release</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PITCH/SPD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">Waveform Zoom (Horiz / Vert)</span><span class="en">Waveform Zoom (Horiz /
+                                Vert)</span>
+                            <div class="tag-container"><span class="tag-pill">#zoom</span><span
+                                    class="tag-pill">#waveform</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-value">VAL turn</kbd> / <kbd
+                                class="kbd key-value">VAL hold</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span>Ping-Pong Loop</span>
+                            <div class="tag-container"><span class="tag-pill">#loop</span><span
+                                    class="tag-pill">#pingpong</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">LOOP</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Sample umbenennen</span><span class="en">Rename sample</span>
+                            <div class="tag-container"><span class="tag-pill">#rename</span><span
+                                    class="tag-pill">#text</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-remain">REM hold</kbd> + <kbd
+                                class="kbd key-value">VAL click</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Sample kopieren</span><span class="en">Copy sample</span>
+                            <div class="tag-container"><span class="tag-pill">#copy</span><span
+                                    class="tag-pill">#duplicate</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-copy">COPY</kbd> + <kbd
+                                class="kbd key-pad">PAD</kbd> ➔ <kbd class="kbd key-pad">PAD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">Sample(s) löschen</span><span class="en">Delete sample(s)</span>
+                            <div class="tag-container"><span class="tag-pill">#delete</span><span
+                                    class="tag-pill">#clear</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-del">DEL</kbd> + <kbd
+                                class="kbd key-pad">PADs</kbd> + <kbd class="kbd key-del">DEL</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Init Parameter (Reset)</span><span class="en">Init Parameters
+                                (Reset)</span>
+                            <div class="tag-container"><span class="tag-pill">#init</span><span
+                                    class="tag-pill">#reset</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 6</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Exchange (Pads tauschen)</span><span class="en">Exchange (Swap pads)</span>
+                            <div class="tag-container"><span class="tag-pill">#exchange</span><span
+                                    class="tag-pill">#swap</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 5</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Pad Link (Mehrere triggern)</span><span class="en">Pad Link (Trigger
+                                multiple)</span>
+                            <div class="tag-container"><span class="tag-pill">#link</span><span
+                                    class="tag-pill">#trigger</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 7</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Mute Group (Choke)</span><span class="en">Mute Group (Choke)</span>
+                            <div class="tag-container"><span class="tag-pill">#mute</span><span
+                                    class="tag-pill">#choke</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 8</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">Param. für ganze Bank ändern</span><span class="en">Change param. for
+                                entire bank</span>
+                            <div class="tag-container"><span class="tag-pill">#bank</span><span
+                                    class="tag-pill">#batch</span><span class="tag-pill">#edit</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-remain">REM hold</kbd> + <kbd
+                                class="kbd key-pad">CTRL</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Effekte & Routing -->
+            <div class="card">
+                <div class="card-header bg-slate-800 text-white"><span class="de">4. Effekte & Routing (EFX)</span><span
+                        class="en">4. Effects & Routing (EFX)</span></div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">DJFX Looper / Filter / MFX</span><span class="en">DJFX Looper / Filter /
+                                MFX</span>
+                            <div class="tag-container"><span class="tag-pill">#fx</span><span
+                                    class="tag-pill">#glitch</span><span class="tag-pill">#effects</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">FX BUTTON</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Bus für Sample wählen</span><span class="en">Select bus for sample</span>
+                            <div class="tag-container"><span class="tag-pill">#bus</span><span
+                                    class="tag-pill">#routing</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-remain">REM hold</kbd> + <kbd
+                                class="kbd key-pad">PAD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Bus für Bank wählen</span><span class="en">Select bus for bank</span>
+                            <div class="tag-container"><span class="tag-pill">#bus</span><span
+                                    class="tag-pill">#bank</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-remain">REM hold</kbd> + <kbd
+                                class="kbd key-pad">BANK</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">Bus Mute (Nur EFX hörbar)</span><span class="en">Bus Mute (Only EFX
+                                audible)</span>
+                            <div class="tag-container"><span class="tag-pill">#busmute</span><span
+                                    class="tag-pill">#drywet</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">BUS FX</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">BUS 1 & 2 Effekt tauschen</span><span class="en">Swap BUS 1 & 2
+                                effects</span>
+                            <div class="tag-container"><span class="tag-pill">#swap</span><span
+                                    class="tag-pill">#fx</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-remain">REM hold</kbd> + <kbd
+                                class="kbd key-pad">BUS FX</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">BUS 3 & 4 temporär bypassen</span><span class="en">Temporarily bypass BUS 3
+                                & 4</span>
+                            <div class="tag-container"><span class="tag-pill">#bypass</span><span
+                                    class="tag-pill">#fx</span><span class="tag-pill">#resample</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-value">VAL hold</kbd> + <kbd
+                                class="kbd key-pad">BUS FX</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Effect Grab (Nur bei Halten)</span><span class="en">Effect Grab (Hold to
+                                apply)</span>
+                            <div class="tag-container"><span class="tag-pill">#grab</span><span
+                                    class="tag-pill">#momentary</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-value">VAL hold</kbd> + <kbd
+                                class="kbd key-pad">FX</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Effekt-Screen fixieren</span><span class="en">Fix/Hold Effect Screen</span>
+                            <div class="tag-container"><span class="tag-pill">#screen</span><span
+                                    class="tag-pill">#fx</span><span class="tag-pill">#keep</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-remain">REM hold</kbd> + <kbd
+                                class="kbd key-pad">MFX</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">MFX Liste ab #17 / #33</span><span class="en">MFX List from #17 /
+                                #33</span>
+                            <div class="tag-container"><span class="tag-pill">#mfx</span><span
+                                    class="tag-pill">#list</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">MFX hold</kbd> + <kbd
+                                class="kbd key-pad">DJFX/ISO</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Sidechain / EFX Settings</span><span class="en">Sidechain / EFX Settings</span>
+                            <div class="tag-container"><span class="tag-pill">#sidechain</span><span
+                                    class="tag-pill">#ducking</span><span class="tag-pill">#comp</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 16</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Pattern & TR-REC -->
+            <div class="card">
+                <div class="card-header bg-slate-800 text-white"><span class="de">5. Pattern & Sequenzer</span><span
+                        class="en">5. Pattern & Sequencer</span></div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Pattern aufnehmen</span><span class="en">Record pattern</span>
+                            <div class="tag-container"><span class="tag-pill">#pattern</span><span
+                                    class="tag-pill">#record</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">PATT SEL</kbd> + <kbd
+                                class="kbd key-pad">REC</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Rehearsal Mode (Probe)</span><span class="en">Rehearsal Mode
+                                (Practice)</span>
+                            <div class="tag-container"><span class="tag-pill">#rehearsal</span><span
+                                    class="tag-pill">#practice</span><span class="tag-pill">#record</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">REC</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">TR-REC Step Sequenzer</span><span class="en">TR-REC Step Sequencer</span>
+                            <div class="tag-container"><span class="tag-pill">#tr-rec</span><span
+                                    class="tag-pill">#step</span><span class="tag-pill">#grid</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">REC</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Pattern kopieren / löschen</span><span class="en">Copy / delete
+                                pattern</span>
+                            <div class="tag-container"><span class="tag-pill">#pattern</span><span
+                                    class="tag-pill">#copy</span><span class="tag-pill">#delete</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">PATT SEL</kbd> + <kbd
+                                class="kbd key-copy">CPY/DEL</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Undo (Letzte Aufnahme)</span><span class="en">Undo (Last recording)</span>
+                            <div class="tag-container"><span class="tag-pill">#undo</span><span
+                                    class="tag-pill">#mistake</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PATT SEL</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Metronom An/Aus</span><span class="en">Metronome On/Off</span>
+                            <div class="tag-container"><span class="tag-pill">#metronome</span><span
+                                    class="tag-pill">#click</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 9</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Count-In einstellen</span><span class="en">Set Count-In</span>
+                            <div class="tag-container"><span class="tag-pill">#countin</span><span
+                                    class="tag-pill">#metronome</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 10</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span>Tap Tempo</span>
+                            <div class="tag-container"><span class="tag-pill">#tempo</span><span
+                                    class="tag-pill">#bpm</span><span class="tag-pill">#tap</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 11</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            <span class="de">TR-REC: Motion Record (Regler)</span><span class="en">TR-REC: Motion Record
+                                (Knobs)</span>
+                            <div class="tag-container"><span class="tag-pill">#motion</span><span
+                                    class="tag-pill">#automation</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">ROLL</kbd> + <kbd
+                                class="kbd key-pad">CTRL</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">TR-REC: Noten von gewähltem Pad löschen</span><span class="en">TR-REC: Delete notes from selected pad</span>
+                            <div class="tag-container"><span class="tag-pill">#tr-rec</span><span
+                                    class="tag-pill">#delete</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-del">DEL</kbd> + <kbd
+                                class="kbd key-pad">A/F</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">TR-REC: Noten von ALLEN Pads löschen</span><span class="en">TR-REC: Delete notes from ALL pads</span>
+                            <div class="tag-container"><span class="tag-pill">#tr-rec</span><span
+                                    class="tag-pill">#delete</span><span class="tag-pill">#clear</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-del">DEL</kbd> + <kbd
+                                class="kbd key-pad">B/G</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Pattern: EFX Motion Rec löschen</span><span class="en">Pattern: Delete EFX Motion Rec</span>
+                            <div class="tag-container"><span class="tag-pill">#pattern</span><span
+                                    class="tag-pill">#delete</span><span class="tag-pill">#motion</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-del">DEL</kbd> + <kbd
+                                class="kbd key-pad">MARK</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Pattern: Pad Mutes löschen</span><span class="en">Pattern: Delete Pad Mutes</span>
+                            <div class="tag-container"><span class="tag-pill">#pattern</span><span
+                                    class="tag-pill">#delete</span><span class="tag-pill">#mute</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-del">DEL</kbd> + <kbd
+                                class="kbd key-pad">REVERSE</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. DJ Modus -->
+            <div class="card">
+                <div class="card-header bg-slate-800 text-white"><span class="de">6. DJ Modus</span><span class="en">6.
+                        DJ Mode</span></div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span>Mute CH1 / CH2</span>
+                            <div class="tag-container"><span class="tag-pill">#dj</span><span
+                                    class="tag-pill">#mute</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">REV</kbd> + <kbd class="kbd key-pad">P13/15</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Hot Cue Marker anspringen</span><span class="en">Jump to Hot Cue
+                                marker</span>
+                            <div class="tag-container"><span class="tag-pill">#hotcue</span><span
+                                    class="tag-pill">#marker</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 1-16</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Roll triggern CH1 / CH2</span><span class="en">Trigger Roll CH1 /
+                                CH2</span>
+                            <div class="tag-container"><span class="tag-pill">#roll</span><span
+                                    class="tag-pill">#dj</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">ROLL</kbd> + <kbd
+                                class="kbd key-pad">PAD 13/15</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Mixer / EFX Ansicht tauschen</span><span class="en">Swap Mixer / EFX
+                                view</span>
+                            <div class="tag-container"><span class="tag-pill">#view</span><span
+                                    class="tag-pill">#mixer</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">MARK</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">CUE MIX / X-FADE auf Regler 3</span><span class="en">CUE MIX / X-FADE on
+                                Knob 3</span>
+                            <div class="tag-container"><span class="tag-pill">#crossfader</span><span
+                                    class="tag-pill">#cue</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">START/END</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Marker hinzufügen</span><span class="en">Add markers</span>
+                            <div class="tag-container"><span class="tag-pill">#dj</span><span
+                                    class="tag-pill">#marker</span><span class="tag-pill">#add</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">MARK</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Marker editieren</span><span class="en">Edit markers</span>
+                            <div class="tag-container"><span class="tag-pill">#dj</span><span
+                                    class="tag-pill">#marker</span><span class="tag-pill">#edit</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">START/END</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">Marker löschen</span><span class="en">Delete markers</span>
+                            <div class="tag-container"><span class="tag-pill">#dj</span><span
+                                    class="tag-pill">#marker</span><span class="tag-pill">#delete</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-del">DEL</kbd> + <kbd class="kbd key-pad">PAD</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. System & Bänke -->
+            <div class="card">
+                <div class="card-header bg-slate-800 text-white"><span class="de">7. Bänke & System</span><span
+                        class="en">7. Banks & System</span></div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Ganze Bank löschen/kopieren</span><span class="en">Delete/Copy entire
+                                bank</span>
+                            <div class="tag-container"><span class="tag-pill">#bank</span><span
+                                    class="tag-pill">#delete</span><span class="tag-pill">#copy</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-del">DEL/CPY</kbd> + <kbd
+                                class="kbd key-pad">EXIT</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Projekt Menü</span><span class="en">Project Menu</span>
+                            <div class="tag-container"><span class="tag-pill">#project</span><span
+                                    class="tag-pill">#load</span><span class="tag-pill">#save</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">SUB PAD</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Utility / Menü</span><span class="en">Utility / Menu</span>
+                            <div class="tag-container"><span class="tag-pill">#utility</span><span
+                                    class="tag-pill">#settings</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 13</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Import / Export Menü</span><span class="en">Import / Export Menu</span>
+                            <div class="tag-container"><span class="tag-pill">#import</span><span
+                                    class="tag-pill">#export</span><span class="tag-pill">#sdcard</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-shift">SHIFT</kbd> + <kbd
+                                class="kbd key-pad">PAD 14</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1 text-[#00D2FF]">
+                            <span class="de">SD-Sample vorhören</span><span class="en">Preview SD sample</span>
+                            <div class="tag-container"><span class="tag-pill">#preview</span><span
+                                    class="tag-pill">#sdcard</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">SUB PAD</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Koala Sampler -->
+            <div class="card">
+                <div class="card-header bg-[#FF7A00] text-slate-900">8. Koala Sampler</div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Pattern wählen</span><span class="en">Select pattern</span>
+                            <div class="tag-container"><span class="tag-pill">#koala</span><span
+                                    class="tag-pill">#pattern</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">PAD 1-8</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Piano Roll / Mixer öffnen</span><span class="en">Open Piano Roll /
+                                Mixer</span>
+                            <div class="tag-container"><span class="tag-pill">#koala</span><span
+                                    class="tag-pill">#pianoroll</span><span class="tag-pill">#mixer</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">PATT EDIT</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Serato DJ & Studio -->
+            <div class="card">
+                <div class="card-header bg-[#00D2FF] text-slate-900">9. Serato DJ & Studio</div>
+                <div class="p-6">
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc flex-1">
+                            Serato DJ: Sampler Slot Play
+                            <div class="tag-container"><span class="tag-pill">#serato</span><span
+                                    class="tag-pill">#sampler</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">PAD 1-8</kbd></div>
+                    </div>
+                    <div class="shortcut-row">
+                        <div class="shortcut-desc">
+                            <span class="de">Studio: Deck 1-4 wählen</span><span class="en">Studio: Select Deck
+                                1-4</span>
+                            <div class="tag-container"><span class="tag-pill">#serato</span><span
+                                    class="tag-pill">#studio</span><span class="tag-pill">#deck</span></div>
+                        </div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-pad">BANK A-D</kbd></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const cards = document.querySelectorAll('.card');
+            const langToggle = document.getElementById('langToggle');
+            const body = document.body;
+
+            // Language Toggle Logic
+            langToggle.addEventListener('click', () => {
+                if (body.classList.contains('lang-de')) {
+                    body.classList.replace('lang-de', 'lang-en');
+                    searchInput.placeholder = "Search for tags, functions (e.g. '#chop', '#glitch', 'Roll')...";
+                } else {
+                    body.classList.replace('lang-en', 'lang-de');
+                    searchInput.placeholder = "Suche nach Tags, Funktionen (z.B. '#chop', '#glitch', 'Roll')...";
+                }
+                searchInput.dispatchEvent(new Event('input'));
+            });
+
+            // Search Logic
+            let debounceTimer;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    const query = e.target.value.toLowerCase().trim();
+
+                    cards.forEach(card => {
+                        const rows = card.querySelectorAll('.shortcut-row');
+                        let hasVisibleRow = false;
+
+                        rows.forEach(row => {
+                            // Use innerText so structurally hidden language strings are not matched
+                            const rowText = row.innerText.toLowerCase();
+
+                            if (rowText.includes(query)) {
+                                row.style.display = 'flex';
+                                hasVisibleRow = true;
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        });
+
+                        if (hasVisibleRow) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }, 150);
+            });
+        });
+    </script>
+</body>
+
+</html>
