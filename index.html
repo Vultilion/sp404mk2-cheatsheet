@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SP-404MK2 Workflow Cheat Sheet v5.50</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎛️</text></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎛️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@500;700&display=swap"
@@ -134,13 +135,207 @@
             -webkit-text-fill-color: transparent;
             background-image: linear-gradient(to right, #00D2FF, #FF0055);
         }
+
+        @media print {
+            @page {
+                margin: 1cm;
+                size: portrait;
+            }
+
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                font-size: 11px !important;
+            }
+
+            * {
+                transition: none !important;
+                transform: none !important;
+                animation: none !important;
+            }
+
+            header {
+                position: static !important;
+                background-color: transparent !important;
+                border-bottom: 2px solid #000000 !important;
+                box-shadow: none !important;
+                padding: 0 0 10px 0 !important;
+                margin-bottom: 15px !important;
+            }
+
+            header h1 {
+                font-size: 20px !important;
+                margin: 0 !important;
+            }
+
+            header>.flex {
+                margin-top: 5px !important;
+                gap: 5px !important;
+            }
+
+            main {
+                margin-top: 0 !important;
+                padding: 0 !important;
+            }
+
+            main .grid {
+                display: block !important;
+                columns: 2 300px;
+                column-gap: 1.5rem;
+            }
+
+            .text-gradient {
+                background-image: none !important;
+                -webkit-text-fill-color: #000000 !important;
+                color: #000000;
+            }
+
+            #langToggle,
+            #printBtn,
+            #searchInput,
+            .absolute.left-3\.5 {
+                display: none !important;
+            }
+
+            input#searchInput {
+                display: none !important;
+            }
+
+            .max-w-xl.mx-auto.mt-8.relative {
+                display: none !important;
+            }
+
+            .card {
+                background-color: #ffffff !important;
+                border: 1px solid #000000 !important;
+                box-shadow: none !important;
+                /* Allow cards to flow naturally across columns/pages to prevent 90% empty pages */
+                break-inside: auto !important;
+                page-break-inside: auto !important;
+                margin-bottom: 2rem !important;
+                height: auto !important;
+                display: block !important;
+                width: 100% !important;
+            }
+
+            .card-header {
+                background-color: #eeeeee !important;
+                color: #000000 !important;
+                border-bottom: 1px solid #000000 !important;
+                font-size: 14px !important;
+                padding: 8px 10px !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            /* Reduce padding inside card for print */
+            .p-6 {
+                padding: 10px !important;
+            }
+
+            /* ULTIMATE BUGFIX for Webkit page-break issues:
+               WebKit ignores break-inside: avoid on flex elements.
+               Convert to block and float children. */
+            .shortcut-row {
+                display: block !important;
+                overflow: hidden !important;
+                /* clearfix */
+                border-bottom: 1px solid #dddddd;
+                padding: 8px 0 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                clear: both !important;
+            }
+
+            .shortcut-desc {
+                color: #000000 !important;
+                font-size: 11px !important;
+                display: block !important;
+                float: left !important;
+                width: 60% !important;
+            }
+
+            .shortcut-row>.flex {
+                float: right !important;
+                max-width: 38% !important;
+                justify-content: flex-end !important;
+            }
+
+            .tag-pill {
+                background-color: #f1f5f9 !important;
+                color: #334155 !important;
+                border: 1px solid #cbd5e1 !important;
+                font-size: 9px !important;
+                padding: 1px 3px !important;
+                margin-top: 2px !important;
+            }
+
+            .kbd {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                box-shadow: none !important;
+                border: 1px solid #999999 !important;
+                font-size: 10px !important;
+                padding: 1px 4px !important;
+            }
+
+            /* Adjusted Colors for KBD borders for printing visibility */
+            .key-shift {
+                border-color: #CC0044 !important;
+                color: #CC0044 !important;
+            }
+
+            .key-remain {
+                border-color: #668800 !important;
+                color: #668800 !important;
+            }
+
+            .key-value {
+                border-color: #0066AA !important;
+                color: #0066AA !important;
+            }
+
+            .key-del {
+                border-color: #CC5500 !important;
+                color: #CC5500 !important;
+            }
+
+            .key-copy {
+                border-color: #6600CC !important;
+                color: #6600CC !important;
+            }
+
+            .key-pad {
+                border-color: #64748b !important;
+                background-color: #f8fafc !important;
+                color: #000 !important;
+            }
+
+            span.text-slate-400 {
+                color: #475569 !important;
+            }
+
+            .shortcut-desc.text-white {
+                color: #000000 !important;
+            }
+
+            .shortcut-desc.text-\[\#00D2FF\] {
+                color: #000000 !important;
+            }
+        }
     </style>
 </head>
 
 <body class="antialiased pb-20 lang-de">
 
     <header class="pt-16 pb-12 px-6 text-center border-b border-slate-800 bg-[#0f172a] sticky top-0 z-50 shadow-xl">
-        <div class="absolute top-4 right-4 md:top-6 md:right-8">
+        <div class="absolute top-4 right-4 md:top-6 md:right-8 flex gap-3">
+            <button id="printBtn"
+                class="bg-slate-800 border border-slate-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md hover:border-[#00D2FF] hover:text-[#00D2FF] transition-colors flex items-center gap-2">
+                🖨️ <span class="hidden sm:inline">PDF / Print</span>
+            </button>
             <button id="langToggle"
                 class="bg-slate-800 border border-slate-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md hover:border-[#00D2FF] hover:text-[#00D2FF] transition-colors flex items-center gap-2">
                 <span class="de">🇬🇧 Switch to EN</span><span class="en">🇩🇪 Auf DE wechseln</span>
@@ -320,11 +515,13 @@
                     </div>
                     <div class="shortcut-row">
                         <div class="shortcut-desc flex-1 text-[#00D2FF]">
-                            <span class="de">Timing synchronisieren (Performance)</span><span class="en">Sync timing (Performance)</span>
+                            <span class="de">Timing synchronisieren (Performance)</span><span class="en">Sync timing
+                                (Performance)</span>
                             <div class="tag-container"><span class="tag-pill">#timing</span><span
                                     class="tag-pill">#sync</span><span class="tag-pill">#live</span></div>
                         </div>
-                        <div class="flex items-center gap-1"><kbd class="kbd key-value">VAL hold</kbd> + <kbd class="kbd key-pad">SUB PAD</kbd></div>
+                        <div class="flex items-center gap-1"><kbd class="kbd key-value">VAL hold</kbd> + <kbd
+                                class="kbd key-pad">SUB PAD</kbd></div>
                     </div>
                 </div>
             </div>
@@ -631,7 +828,8 @@
                     </div>
                     <div class="shortcut-row">
                         <div class="shortcut-desc flex-1 text-[#00D2FF]">
-                            <span class="de">Sidechain / EFX Settings</span><span class="en">Sidechain / EFX Settings</span>
+                            <span class="de">Sidechain / EFX Settings</span><span class="en">Sidechain / EFX
+                                Settings</span>
                             <div class="tag-container"><span class="tag-pill">#sidechain</span><span
                                     class="tag-pill">#ducking</span><span class="tag-pill">#comp</span></div>
                         </div>
@@ -731,7 +929,8 @@
                     </div>
                     <div class="shortcut-row">
                         <div class="shortcut-desc flex-1 text-[#00D2FF]">
-                            <span class="de">TR-REC: Noten von gewähltem Pad löschen</span><span class="en">TR-REC: Delete notes from selected pad</span>
+                            <span class="de">TR-REC: Noten von gewähltem Pad löschen</span><span class="en">TR-REC:
+                                Delete notes from selected pad</span>
                             <div class="tag-container"><span class="tag-pill">#tr-rec</span><span
                                     class="tag-pill">#delete</span></div>
                         </div>
@@ -740,7 +939,8 @@
                     </div>
                     <div class="shortcut-row">
                         <div class="shortcut-desc flex-1 text-[#00D2FF]">
-                            <span class="de">TR-REC: Noten von ALLEN Pads löschen</span><span class="en">TR-REC: Delete notes from ALL pads</span>
+                            <span class="de">TR-REC: Noten von ALLEN Pads löschen</span><span class="en">TR-REC: Delete
+                                notes from ALL pads</span>
                             <div class="tag-container"><span class="tag-pill">#tr-rec</span><span
                                     class="tag-pill">#delete</span><span class="tag-pill">#clear</span></div>
                         </div>
@@ -749,7 +949,8 @@
                     </div>
                     <div class="shortcut-row">
                         <div class="shortcut-desc flex-1 text-[#00D2FF]">
-                            <span class="de">Pattern: EFX Motion Rec löschen</span><span class="en">Pattern: Delete EFX Motion Rec</span>
+                            <span class="de">Pattern: EFX Motion Rec löschen</span><span class="en">Pattern: Delete EFX
+                                Motion Rec</span>
                             <div class="tag-container"><span class="tag-pill">#pattern</span><span
                                     class="tag-pill">#delete</span><span class="tag-pill">#motion</span></div>
                         </div>
@@ -758,7 +959,8 @@
                     </div>
                     <div class="shortcut-row">
                         <div class="shortcut-desc flex-1 text-[#00D2FF]">
-                            <span class="de">Pattern: Pad Mutes löschen</span><span class="en">Pattern: Delete Pad Mutes</span>
+                            <span class="de">Pattern: Pad Mutes löschen</span><span class="en">Pattern: Delete Pad
+                                Mutes</span>
                             <div class="tag-container"><span class="tag-pill">#pattern</span><span
                                     class="tag-pill">#delete</span><span class="tag-pill">#mute</span></div>
                         </div>
@@ -959,7 +1161,15 @@
             const searchInput = document.getElementById('searchInput');
             const cards = document.querySelectorAll('.card');
             const langToggle = document.getElementById('langToggle');
+            const printBtn = document.getElementById('printBtn');
             const body = document.body;
+
+            // Print Logic
+            if (printBtn) {
+                printBtn.addEventListener('click', () => {
+                    window.print();
+                });
+            }
 
             // Language Toggle Logic
             langToggle.addEventListener('click', () => {
