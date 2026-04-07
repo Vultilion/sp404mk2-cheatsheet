@@ -148,6 +148,10 @@
                 padding: 0 !important;
                 margin: 0 !important;
                 font-size: 11px !important;
+                /* Apply columns globally to the body */
+                columns: 2 !important;
+                column-gap: 1.5rem !important;
+                column-fill: auto !important;
             }
 
             * {
@@ -156,34 +160,40 @@
                 animation: none !important;
             }
 
+            /* Flatten main layout so cards are direct children of body for layout */
+            main,
+            main .grid {
+                display: contents !important;
+            }
+
+            /* Style header identically to a card! Flows into the first column naturally */
             header {
                 position: static !important;
-                background-color: transparent !important;
-                border-bottom: 2px solid #000000 !important;
+                background-color: #ffffff !important;
+                border: 1px solid #000000 !important;
+                border-radius: 1rem !important;
                 box-shadow: none !important;
-                padding: 0 0 10px 0 !important;
-                margin-bottom: 15px !important;
+                padding: 15px !important;
+                margin-bottom: 2rem !important;
+                display: inline-block !important; /* Treat as card */
+                width: 100% !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                text-align: center !important;
             }
 
             header h1 {
                 font-size: 20px !important;
-                margin: 0 !important;
+                margin: 0 0 10px 0 !important;
+                border-bottom: 1px solid #000000 !important;
+                padding-bottom: 10px !important;
             }
 
             header>.flex {
                 margin-top: 5px !important;
                 gap: 5px !important;
-            }
-
-            main {
-                margin-top: 0 !important;
-                padding: 0 !important;
-            }
-
-            main .grid {
-                display: block !important;
-                columns: 2 300px;
-                column-gap: 1.5rem;
+                justify-content: center !important;
+                flex-wrap: wrap !important;
             }
 
             .text-gradient {
@@ -210,14 +220,15 @@
             .card {
                 background-color: #ffffff !important;
                 border: 1px solid #000000 !important;
+                border-radius: 1rem !important;
                 box-shadow: none !important;
-                /* Allow cards to flow naturally across columns/pages to prevent 90% empty pages */
-                break-inside: auto !important;
-                page-break-inside: auto !important;
+                /* NEVER split a card across columns/pages again */
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                display: inline-block !important; /* Forces block formatting context for break avoidance */
+                width: 100% !important;
                 margin-bottom: 2rem !important;
                 height: auto !important;
-                display: block !important;
-                width: 100% !important;
             }
 
             .card-header {
